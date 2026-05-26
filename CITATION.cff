@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "平面图着色中的 Kempe 障碍传播研究"
+title-en: "Kempe Obstruction Dynamics in Planar Graph Coloring"
+message: "If you use this work, please cite it as below."
+version: "0.1"
+date-released: 2026-05-26
+authors:
+  - name: "方寸山"
+    email: "agepeace@163.com"
+repository-code: "https://github.com/agepeace/kempe-obstruction-theory"
+license: "MIT"
+keywords:
+  - "Four Color Theorem"
+  - "Planar Graph Coloring"
+  - "Kempe Chains"
+  - "GLFHO"
+  - "Graph Theory"
