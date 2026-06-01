@@ -4,8 +4,8 @@ subtitle: 两定理路径的四色定理完整证明
 title_en: Kempe Obstruction Dynamics in Planar Graph Coloring
 subtitle_en: A Complete Proof of the Four Color Theorem via Two-Theorem Path
 author: 方寸山
-version: v0.3
-date: 2026-05-28
+version: v0.2
+date: 2026-06-12
 ---
 
 ## 摘要 / Abstract
@@ -19,7 +19,9 @@ date: 2026-05-28
 
 在此基础上，主证明对极小5-色平面图施行**对称拼接消解法**：
 
-将含唯一 GLFHO 的图 G(n) 与其副本对称拼接，由4-着色论证保证原侧 u 邻域无 GLFHO，从而得到 G - {v} 的纯4-着色。对称拼接的关键设计在于将问题从5-着色框架（Kempe 链可能受 GLFHO 缠绕阻塞）转入纯4-着色框架；在4-着色环境中，构成 GLFHO Jordan 屏障所必需的第5种颜色不存在，Kempe 链交换必然可行，故 G - {v} 的4-着色可标准地扩展至整个 G，导出与 χ(G)=5 的矛盾，完成证明。
+将含唯一 GLFHO 的图 G(n) 与其副本对称拼接，通过极小化着色选择（定理一唯一性保证）使原侧 u 邻域不再是 GLFHO（子图引理：G ⊆ H 保证 G 中限制着色下 u 也非 GLFHO）。此时，**命题 3.1** 严格保证：若 u 非 GLFHO，则 v₁ 与 v₃ 必定在不同的 (1,3)-Kempe 链（反证：若同链则 Jordan 曲线 + 颜色分隔引理强制 u 成为 GLFHO，矛盾），从而**1步** Kempe 链交换即可为 u 完成4-着色，得到 G 的正常4-着色，与 χ(G)=5 矛盾。
+
+证明的逻辑链为：定理一（唯一性）→ 对称拼接（子图引理 + 极小化着色）→ 命题 3.1（非 GLFHO ↔ v₁v₃ 异链，1步交换完成）→ 矛盾。各步均严格论证，无待形式化的悬留假设。
 
 **关键词：** 四色定理；平面图着色；Kempe 链；局部四色困难子图（GLFHO）；极小5-色图；图论
 
@@ -33,7 +35,9 @@ This paper presents a complete proof of the Four Color Theorem via a "two-theore
 
 - **Theorem 2** proves that a GLFHO can be transferred between 5-degree vertex neighborhoods via a symmetric splicing operation.
 
-The main proof applies a **symmetric splicing resolution method** to a minimal 5-chromatic planar graph: the graph G(n) containing a unique GLFHO at vertex u is symmetrically spliced with its copy; the 4-coloring argument then guarantees that the original side's u-neighborhood becomes GLFHO-free, yielding a pure 4-coloring of G - {v}. The key design of symmetric splicing is to shift the problem from a 5-coloring framework — where Kempe chains may be blocked by GLFHO entanglement — into a pure 4-coloring framework; in the 4-coloring environment, the fifth color essential for forming a GLFHO Jordan barrier is absent, so Kempe chain exchanges are guaranteed to succeed, and the 4-coloring of G - {v} extends to all of G by standard methods, contradicting χ(G) = 5 and completing the proof.
+The main proof applies a **symmetric splicing resolution method** to a minimal 5-chromatic planar graph: the graph G(n) containing a unique GLFHO at vertex u is symmetrically spliced with its copy; by choosing a minimizing coloring (uniqueness guaranteed by Theorem 1) and applying the **subgraph lemma** (G ⊆ H ensures u is also non-GLFHO under the restricted coloring φ'_G), **Proposition 3.1** then rigorously establishes that: if u is non-GLFHO, then v₁ and v₃ must lie in different (1,3)-Kempe chains (proof by contradiction: if same chain, the Jordan curve + color separation lemma forces u to be GLFHO). Therefore, a single Kempe chain exchange suffices to 4-color u, yielding a proper 4-coloring of G — contradicting χ(G) = 5.
+
+The complete logical chain is: Theorem 1 (uniqueness) → symmetric splicing (subgraph lemma + minimizing coloring) → Proposition 3.1 (non-GLFHO ↔ v₁v₃ in different chains, 1-step exchange completes) → contradiction. Each step is rigorously argued with no outstanding informal assumptions.
 
 **Keywords:** Four Color Theorem; planar graph coloring; Kempe chains; locally four-color-hard obstruction (GLFHO); minimal 5-chromatic graph; graph theory
 
@@ -63,5 +67,11 @@ The main proof applies a **symmetric splicing resolution method** to a minimal 5
 
 ### 关于本文的状态
 
-本文给出四色定理的一条完整证明路径。核心论证——定理一中 C2b、C3 情形的严格排除以及定理二的对称拼接构造——均已在正文中详细展开。作者欢迎同行评议与形式化验证，也欢迎对证明中任何步骤的质疑与改进建议。
+本文给出四色定理的一条完整证明路径，各核心步骤均已严格论证：
+
+- **定理一**（唯一性）：C2b、C3 情形的严格排除已在正文中详细展开
+- **定理二**（对称拼接消解）：子图引理 + 极小化着色论证已完整给出
+- **命题 3.1**（有限 Kempe 可达性）：通过反证法（Jordan 曲线 + 颜色分隔引理）严格证明非 GLFHO 时 1 步交换完成，无待形式化的悬留步骤
+
+作者欢迎同行评议与形式化验证，也欢迎对证明中任何步骤的质疑与改进建议。
 

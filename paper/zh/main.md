@@ -2,7 +2,7 @@
 title: 平面图着色中的 Kempe 障碍传播研究
 subtitle: 两定理路径的四色定理完整证明
 title_en: Kempe Obstruction Dynamics in Planar Graph Coloring
-version: v0.3
+version: v0.2
 toc: true
 ---
 

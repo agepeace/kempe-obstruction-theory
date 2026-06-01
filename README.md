@@ -96,7 +96,7 @@ Step 1: Augment   → Augment a pentagonal face v on the far side of u's neighbo
 Step 2: Splice    → Glue the augmented graph and its copy along v's boundary to form H
         ↓
 第三步：唯一性消解 → 由定理一，H 中至多一个 GLFHO，分情况得出4-着色
-Step 3: Resolve   → By Theorem 1, at most one GLFHO in H; case analysis yields 4-coloring
+Step 3: Resolve   → By selecting an appropriate minimal 5-coloring on H (minimizing the number of GLFHO occurrences) and applying Theorem 1's uniqueness on minimal substructures, at most one GLFHO can survive; case analysis (transfer or resolvable obstruction) yields a 4-coloring under the stated premises
 ```
 
 ---
