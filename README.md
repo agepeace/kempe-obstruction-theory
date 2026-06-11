@@ -13,9 +13,9 @@
 
 本仓库提供四色定理的一个非计算机证明方案，基于 Kempe 障碍结构的分析。
 
-核心思路：通过引入**局部四色困难子图（GLFHO）**概念和**对称拼接消解法**，建立证明框架。
+核心思路：通过引入**局部四色困难子图（GLFHO）**概念和**对称拼接法**，建立证明框架。
 
-This repository presents a proposed non-computer proof of the Four Color Theorem based on the analysis of Kempe obstruction structures. The key idea is the introduction of **Locally Four-Color-Hard Obstruction (GLFHO)** and a **symmetric splicing resolution method**.
+This repository presents a proposed non-computer proof of the Four Color Theorem based on the analysis of Kempe obstruction structures. The key idea is the introduction of **Locally Four-Color-Hard Obstruction (GLFHO)** and a **symmetric splicing method**.
 
 ---
 
@@ -34,8 +34,8 @@ This repository presents a proposed non-computer proof of the Four Color Theorem
 **四色定理**：任意简单平面图均可正常4-着色
 *Four Color Theorem: Every simple planar graph is 4-colorable.*
 
-采用对称拼接消解法，将困难结构消除，得到4-着色。
-*The proof applies a symmetric splicing resolution method to eliminate the obstruction structure.*
+通过对称拼接法实现GLFHO转移，揭示极小5-色图的不稳定性，导出矛盾。
+*The proof uses symmetric splicing method to achieve GLFHO transfer, revealing the instability of minimal 5-chromatic graphs and deriving a contradiction.*
 
 ---
 
@@ -83,20 +83,23 @@ Kempe 在 1879 年尝试证明四色定理，但在处理5-度顶点时做了一
 2. **定理一（GLFHO 的唯一性）**：论证任何极小5-色平面图中最多只有一个 GLFHO。这意味着只需消除这一个困难，整体问题就解决了。
    *Theorem 1 (Uniqueness): At most one GLFHO exists in any 5-coloring of a minimal 5-chromatic planar graph. Eliminating this single obstruction resolves the entire problem.*
 
-3. **定理二（GLFHO 的可消解性）**：通过对称拼接与二次切割操作，利用定理一的唯一性保证，证明 GLFHO 在极小5-色图中无法稳定存在，从而推翻极小5-色图的存在性。
-   *Theorem 2 (Resolution): Via symmetric splicing and secondary cutting operations, utilizing Theorem 1's uniqueness guarantee, proves that GLFHO cannot stably exist in minimal 5-chromatic graphs, thereby disproving their existence.*
+3. **定理二（GLFHO 的可转移性）**：通过对称拼接操作，利用定理一的唯一性保证，证明 GLFHO 可以在5-度顶点邻域间转移，从而揭示极小5-色图结构的不稳定性，推翻极小5-色图的存在性。
+   *Theorem 2 (Transferability): Via symmetric splicing operations, utilizing Theorem 1's uniqueness guarantee, proves that GLFHO can transfer between degree-5 vertex neighborhoods, revealing the structural instability of minimal 5-chromatic graphs and disproving their existence.*
 
-### 对称拼接与二次切割法 / Symmetric Splicing and Secondary Cutting
+### 对称拼接法 / Symmetric Splicing Method
 
 ```
-第一步：对称拼接  → 将图G与其副本G'沿5-度顶点v/v'的边界粘合为H
-Step 1: Splice    → Glue graph G and its copy G' along the boundary of degree-5 vertices v/v' to form H
+第一步：对称拼接  → 挖空图G和副本G'的5-度顶点v/v'，错位贴合10个边界顶点为H
+Step 1: Splice    → Remove degree-5 vertices v/v' from G and G', stagger-join 10 boundary vertices to form H
         ↓
 第二步：唯一性约束 → 由定理一，H的极小化着色下两侧不能同时是GLFHO
 Step 2: Uniqueness → By Theorem 1, in a minimal coloring of H, both sides cannot simultaneously be GLFHOs
         ↓
-第三步：二次切割导出矛盾 → 切割v'后得H - {v'} ≅ G，但u处的GLFHO消失，导致矛盾
-Step 3: Secondary Cut → After cutting v', we get H - {v'} ≅ G, but the GLFHO at u vanishes, yielding a contradiction
+第三步：二次切割  → 切断错位连接，分离G侧，恢复v；反证推导v必然是GLFHO
+Step 3: Cut & Transfer → Sever staggered connections, separate G-side, restore v; prove by contradiction v must be GLFHO
+        ↓
+第四步：GLFHO转移 → u处的GLFHO消失，v处成为GLFHO，证明GLFHO可转移
+Step 4: Transfer  → The GLFHO at u vanishes while v becomes a GLFHO, proving GLFHO transferability
 ```
 
 ---
