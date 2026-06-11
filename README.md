@@ -83,20 +83,20 @@ Kempe 在 1879 年尝试证明四色定理，但在处理5-度顶点时做了一
 2. **定理一（GLFHO 的唯一性）**：论证任何极小5-色平面图中最多只有一个 GLFHO。这意味着只需消除这一个困难，整体问题就解决了。
    *Theorem 1 (Uniqueness): At most one GLFHO exists in any 5-coloring of a minimal 5-chromatic planar graph. Eliminating this single obstruction resolves the entire problem.*
 
-3. **定理二（GLFHO 的可消解性）**：通过对称拼接与定理一的唯一性保证，将 GLFHO 消解，不依赖于 Kempe 链交换。
-   *Theorem 2 (Resolution): Via symmetric splicing and Theorem 1's uniqueness guarantee, the GLFHO is resolved without relying on Kempe chain exchanges.*
+3. **定理二（GLFHO 的可消解性）**：通过对称拼接与二次切割操作，利用定理一的唯一性保证，证明 GLFHO 在极小5-色图中无法稳定存在，从而推翻极小5-色图的存在性。
+   *Theorem 2 (Resolution): Via symmetric splicing and secondary cutting operations, utilizing Theorem 1's uniqueness guarantee, proves that GLFHO cannot stably exist in minimal 5-chromatic graphs, thereby disproving their existence.*
 
-### 对称拼接消解法 / Symmetric Splicing Resolution
+### 对称拼接与二次切割法 / Symmetric Splicing and Secondary Cutting
 
 ```
-第一步：增扩      → 在 GLFHO 中心 u 的邻居另一侧增扩五边形面 v
-Step 1: Augment   → Augment a pentagonal face v on the far side of u's neighbor
+第一步：对称拼接  → 将图G与其副本G'沿5-度顶点v/v'的边界粘合为H
+Step 1: Splice    → Glue graph G and its copy G' along the boundary of degree-5 vertices v/v' to form H
         ↓
-第二步：对称拼接  → 将增扩后的图与其副本沿 v 的边界粘合为 H
-Step 2: Splice    → Glue the augmented graph and its copy along v's boundary to form H
+第二步：唯一性约束 → 由定理一，H的极小化着色下两侧不能同时是GLFHO
+Step 2: Uniqueness → By Theorem 1, in a minimal coloring of H, both sides cannot simultaneously be GLFHOs
         ↓
-第三步：唯一性消解 → 由定理一，H 中至多一个 GLFHO，分情况得出4-着色
-Step 3: Resolve   → By selecting an appropriate minimal 5-coloring on H (minimizing the number of GLFHO occurrences) and applying Theorem 1's uniqueness on minimal substructures, at most one GLFHO can survive; case analysis (transfer or resolvable obstruction) yields a 4-coloring under the stated premises
+第三步：二次切割导出矛盾 → 切割v'后得H - {v'} ≅ G，但u处的GLFHO消失，导致矛盾
+Step 3: Secondary Cut → After cutting v', we get H - {v'} ≅ G, but the GLFHO at u vanishes, yielding a contradiction
 ```
 
 ---
@@ -105,11 +105,17 @@ Step 3: Resolve   → By selecting an appropriate minimal 5-coloring on H (minim
 
 | 方面 | Kempe 1879 | Appel-Haken 1976 | 本文 |
 |------|-----------|----------------|------|
-| 核心工具 | Kempe链 | 不可避免构型 | GLFHO + 对称拼接 |
+| 核心工具 | Kempe链 | 放电法+不可避免构型 | GLFHO + 对称拼接 |
 | 计算机依赖 | 否 | 是 | 否 |
 | 穷举规模 | 无 | ~1200个构型 | 无需穷举 |
+| 核心假设 | 链交换总可行 | 极小5-色图必含某个不可避免构型 | 推翻极小5-色图存在性 |
 | 证明长度 | 短（有缺陷） | 极长 | 适中 |
 | 主要局限 | 忽视链缠绕 | 依赖计算机 | 定理一严格性待评议 |
+
+**关键区别**：
+- **Kempe**：假设链交换总能简化着色，忽略了GLFHO（链缠绕）现象
+- **Appel-Haken**：用放电法证明存在有限的不可避免构型集，再用计算机验证可规约性
+- **本文**：证明极小5-色图本身不存在（通过GLFHO的不稳定性），使"有限构型集"假设失去前提
 
 ---
 
@@ -135,12 +141,18 @@ kempe-obstruction-theory/
 │   └── 反例集.md                    # Heawood反例、9-17-25节点反例
 │
 ├── notes/
-│   └── 技术笔记.md                  # 关键概念速查、常见问题解答
+│   ├── 技术笔记.md                  # 关键概念速查、常见问题解答
+│   └── 逻辑分析报告.md              # 论文逻辑分析与改进建议（修正版）
 │
+├── Kempe-Obstruction-Theory.docx    # 完整论文 Word 版本
 ├── CITATION.cff                     # 引用信息
 ├── LICENSE                          # MIT 许可证
 └── README.md                        # 本文件
 ```
+
+**说明**：
+- `paper/zh/complete-paper.md` - 包含所有章节的完整论文（用于生成 docx）
+- `notes/逻辑分析报告.md` - 详细的逻辑审查与修正说明
 
 ---
 
